@@ -8,8 +8,8 @@
 </head>
 <body>
     <div id="game-board">
-        <div id="text">
-            <span>
+        <div id="text-holder">
+            <span id="text">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </span>
         </div>
@@ -20,9 +20,11 @@
 
         <div id="stats">
             <div id="player-stats">
+                <span><strong>Hero level: </strong> <strong><span id="player-level"></span></strong></span>
                 <span>Health: <strong><span id="player-health">100</span></strong></span>
             </div>
             <div id="monster-stats">
+                <span>Monster Name: <strong><span id="monster-name">Goblin</span></strong></span>
                 <span>Health: <strong><span id="monster-health">100</span></strong></span>
             </div>
         </div>
@@ -34,5 +36,7 @@
             <button id="button4" class="action-button"><strong>Inn</strong></button>
         </div>
     </div>
+    <script src="script.js" type="module"></script>
+    <script scr="allStats.js" type="module"></script>
 </body>
 </html>
