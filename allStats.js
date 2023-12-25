@@ -1,11 +1,11 @@
 const player = {
-    health: 100,
+    health: 1000,
     level: 1,
     exp: 0,
     alive: true, 
     "attack power": 10
 }
-const monsters = [
+const monsterList = [
     {
         name: 'Low level Goblin 1',
         health: 100,
@@ -32,4 +32,4 @@ const monsters = [
     },
 ];
 
-export {player, monsters}
+export {player, monsterList}
