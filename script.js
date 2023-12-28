@@ -25,25 +25,24 @@ button3.onclick = inventory;
 button4.onclick = inn;
 
 // Picks a monster from the allStats monster array at random
-function monsterPicker(array){
-    const randomNum = Math.floor(Math.random()* array.length);
+function monsterPicker(){
+    const randomNum = Math.floor(Math.random()* monsterList.length);
 
-    return monsterFighting = array.filter((item, index) => index == randomNum);  
+    return monsterFighting = Object.assign({},monsterList[randomNum]);  
 };
 
 // Allows you to fight a monster
 function fight() {
-    monsterPicker(monsterList);
-    console.log(monsterList)
-    console.log(monsterFighting)
+    monsterPicker();
+    
     menu.style.display = "none";
     stats.style.display = "flex";
 
     level.innerText = player.level;
     playerHealth.innerText = player.health;
 
-    monsterName.innerText = monsterFighting[0].name;
-    monsterHealth.innerText = monsterFighting[0].health;
+    monsterName.innerText = monsterFighting.name;
+    monsterHealth.innerText = monsterFighting.health;
 
     text.innerText = "You have encountered a level " + monsterFighting.level + " monster get ready to fight!";
 };
@@ -54,22 +53,22 @@ function attack(){
     const randomMonsterNum = Math.floor(Math.random() * 5);
     // creating critcal attack 
     const playerCritical = (player["attack power"] * 1.5) - player["attack power"];
-    const monsterCritical = (monsterFighting[0]["attack power"] * 1.5) - monsterFighting[0]["attack power"];
+    const monsterCritical = (monsterFighting["attack power"] * 1.5) - monsterFighting["attack power"];
 
     // setting up player attack based off randomPlayerNum 
-    if(randomPlayerNum >= 3){
-        monsterFighting[0].health -= player["attack power"];
+    if(randomPlayerNum >= 2){
+        monsterFighting.health -= player["attack power"];
         //critical attack 
-        if(randomPlayerNum === 5) {
-            monsterFighting[0].health -= playerCritical;
+        if(randomPlayerNum >= 4) {
+            monsterFighting.health -= playerCritical;
         };
     };
 
     // setting up monster attack based off randomMonsterNum
     if(randomMonsterNum >= 3){
-        player.health -= monsterFighting[0]["attack power"];
+        player.health -= monsterFighting["attack power"];
         //critcal attack
-        if(randomMonsterNum === 5) {
+        if(randomMonsterNum >= 4) {
             player.health -= monsterCritical;
         };
     };
@@ -77,12 +76,12 @@ function attack(){
     winLose();
 
     playerHealth.innerText = player.health;
-    monsterHealth.innerText = monsterFighting[0].health;
+    monsterHealth.innerText = monsterFighting.health;
 };
 
 function winLose() {
 
-    if(monsterFighting[0].health <= 0){
+    if(monsterFighting.health <= 0){
         menu.style.display = "flex";
         stats.style.display = "none";
         text.innerText = "You won that fight";
